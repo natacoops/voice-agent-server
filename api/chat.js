@@ -1,3 +1,4 @@
+export const runtime = "nodejs18.x";
 import fetch from "node-fetch";
 
 function buildSystemPrompt(context = "") {
