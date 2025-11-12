@@ -1,4 +1,5 @@
-export const runtime = "nodejs18.x";
+// api/chat.js
+export const runtime = "nodejs22.x";
 import fetch from "node-fetch";
 
 function buildSystemPrompt(context = "") {
