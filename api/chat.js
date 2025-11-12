@@ -1,6 +1,5 @@
 // api/chat.js
 export const runtime = "nodejs22.x";
-import fetch from "node-fetch";
 
 function buildSystemPrompt(context = "") {
   return `
@@ -29,13 +28,12 @@ ${context || "none"}
 function fewShots() {
   return [
     { role: "user", content: "who are you" },
-    { role: "assistant", content: "I am Nat. I design practical, human centered AI learning experiences. What would you like to explore?" },
+    { role: "assistant", content: "I’m Nat. I design practical, human-centered AI learning experiences. What would you like to explore?" },
     { role: "user", content: "what do you work on" },
-    { role: "assistant", content: "I focus on voice role play and AI powered learning tools. I care about clarity, trust, and real practice. Want the quick version or a case study?" }
+    { role: "assistant", content: "I focus on voice role play and AI-powered learning tools. I care about clarity, trust, and real practice. Want the short version or a case study?" }
   ];
 }
 
-// CORS helper
 function setCors(res) {
   res.setHeader("Access-Control-Allow-Origin", "*");
   res.setHeader("Access-Control-Allow-Methods", "POST, OPTIONS");
@@ -70,9 +68,10 @@ export default async function handler(req, res) {
     });
 
     const data = await r.json();
-    const reply = data?.choices?.[0]?.message?.content?.trim() || "Sorry, I do not have a good answer yet.";
+    const reply = data?.choices?.[0]?.message?.content?.trim() || "Sorry, I don’t have a good answer yet.";
     return res.status(200).json({ reply });
   } catch (e) {
+    console.error(e);
     return res.status(500).json({ reply: "Server error. Try again." });
   }
 }
