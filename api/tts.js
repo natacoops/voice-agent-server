@@ -1,4 +1,5 @@
-export const runtime = "nodejs18.x";
+// api/tts.js
+export const runtime = "nodejs22.x";
 import fetch from "node-fetch";
 
 // CORS helper
